@@ -116,6 +116,11 @@ class LibraryListActivity final : public UiTabListActivity {
   // Materializes ListItems and their strings for the visible window only.
   void buildRows(UiScreen& screen);
   static void formatInitialHeading(uint32_t initial, std::string& out);
+  bool seriesFor(int entry, std::string& name, uint16_t& position);
+  void formatSeriesHeading(const std::string& name, std::string& out) const;
+  // Last series read, so a group's rows share one table read.
+  uint16_t cachedSeriesId = library::CLIX_SERIES_NONE;
+  std::string cachedSeriesName;
   void formatAuthorHeading(const std::string& author, std::string& out) const;
   void drawPositionReadout() const;
   void drawHoldHelp() const;
