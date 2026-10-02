@@ -742,8 +742,7 @@ void LibraryListActivity::applyFilter() {
     if (index.readSeriesRef(ordinal, ref) && ref.seriesId != library::CLIX_SERIES_NONE) {
       series.clear();
       uint16_t books = 0;
-      if (index.readSeries(ref.seriesId, series, books) &&
-          library::matchesQuery(library::fold(series, /*stripArticle=*/true), needle)) {
+      if (index.readSeries(ref.seriesId, series, books) && library::matchesQuery(library::fold(series), needle)) {
         matches[matchCount++] = static_cast<uint16_t>(row);
       }
     }

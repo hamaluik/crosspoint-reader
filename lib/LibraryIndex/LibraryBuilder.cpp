@@ -682,9 +682,7 @@ bool buildSeriesOrder(HalFile& stage, const uint16_t* order, const uint16_t n, u
     }
 
     const size_t len = std::min<size_t>(staged.len, CLIX_SERIES_NAME_BYTES);
-    // Folding with the article stripped is what puts "The Stormlight Archive"
-    // under S, where a reader looking along a shelf expects it.
-    const std::string folded = len > 0 ? fold(std::string_view(staged.name, len), true) : std::string();
+    const std::string folded = len > 0 ? fold(std::string_view(staged.name, len)) : std::string();
     if (folded.empty()) {
       // 0xFF outranks every folded byte, so standalones land after every series
       // and knownSeriesCount is simply where they begin. A name that folds away
